@@ -1,6 +1,9 @@
-FROM openjdk:11-jdk
-MAINTAINER Samuel Krieger
-WORKDIR /app
+FROM openjdk:8-jre-slim
+
 EXPOSE 8080
-COPY target/Compassotest-0.0.1-SNAPSHOT.jar/Compassotest.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+RUN mkdir /app
+
+COPY build/libs/*.jar /app/Compassotest-0.0.1-SNAPSHOT.jar
+
+ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/Compassotest-0.0.1-SNAPSHOT.jar"]
