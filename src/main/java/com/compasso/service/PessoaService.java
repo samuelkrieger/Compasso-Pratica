@@ -3,7 +3,7 @@ package com.compasso.service;
 import org.springframework.stereotype.Service;
 
 import com.compasso.domain.Pessoa;
-import com.compasso.error.BadPessoatException;
+import com.compasso.error.BadPessoaException;
 import com.compasso.error.PessoaNotFoundException;
 import com.compasso.repository.PessoaRepository;
 
@@ -25,8 +25,8 @@ public class PessoaService {
 	        try {
 	            return this.repository.save(pessoa);
 	        } catch (Exception ex) {
-	            log.info("error trying to create new product. {}", ex.getMessage());
-	            throw new BadPessoatException(pessoa.getNome());
+	            log.info("error trying to create new pessoa. {}", ex.getMessage());
+	            throw new BadPessoaException(pessoa.getNome());
 	        }
 	    }
 	    public Pessoa findById(final Long id) {

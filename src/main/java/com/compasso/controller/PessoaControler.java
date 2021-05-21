@@ -15,7 +15,13 @@ import com.compasso.response.PessoaCreatedResponse;
 import com.compasso.response.PessoaFoundResponse;
 import com.compasso.service.PessoaService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
+@Api(value = "pessoa")
 @RequestMapping("/api/pessoa")
 public class PessoaControler {
 	
@@ -24,6 +30,17 @@ public class PessoaControler {
 	    
 	    @PostMapping
 	    @ResponseStatus(HttpStatus.CREATED)
+	    @ApiOperation(
+	            value = "Create Pessoa",
+	            nickname = "create",
+	            notes = "Creates a new Pessoa",
+	            response = PessoaCreatedResponse.class,
+	            tags = {"Creation"}
+	    )
+	    @ApiResponses({
+	            @ApiResponse(code = 201, message = "pessoa-created", response = PessoaCreatedResponse.class),
+	            @ApiResponse(code = 400, message = "pessoa-error"),
+	    })
 	    public PessoaCreatedResponse create(@RequestBody Pessoa pessoa) {
 	        final Pessoa created = this.service.createNewPessoa(pessoa);
 	        return new PessoaCreatedResponse(created);
@@ -31,6 +48,17 @@ public class PessoaControler {
 	    
 	    @GetMapping("/{id}")
 	    @ResponseStatus(HttpStatus.OK)
+	    @ApiOperation(
+	            value = "Find Pessoa by Id",
+	            nickname = "find",
+	            notes = "Finds an existing pessoa by id",
+	            response = PessoaFoundResponse.class,
+	            tags = {"Find"}
+	    )
+	    @ApiResponses({
+	            @ApiResponse(code = 200, message = "pessoa-found", response = PessoaFoundResponse.class),
+	            @ApiResponse(code = 404, message = "pessoa-not-found", response = PessoaFoundResponse.class),
+	    })
 	    public PessoaFoundResponse find( @PathVariable String id) {
 	        long ids=Long.parseLong(id);
 	    	final Pessoa found = this.service.findById(ids);

@@ -1,7 +1,7 @@
 server:
   port: 8082
   servlet:
-    context-path: /a
+    context-path: /
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -12,3 +12,9 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+    
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
