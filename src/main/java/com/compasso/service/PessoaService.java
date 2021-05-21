@@ -10,6 +10,7 @@ import com.compasso.repository.PessoaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 @Service
 public class PessoaService {
 	   private static final Logger log = LoggerFactory.getLogger(PessoaService.class);

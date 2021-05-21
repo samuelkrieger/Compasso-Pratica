@@ -1,39 +1,35 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.5'
+    id 'org.springframework.boot' version '2.0.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 group = 'com.compasso'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compileOnly("org.springframework.boot:spring-boot-devtools")
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.31.Final'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jdbc', version: '2.4.5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-	
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+ 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
 	
 	}
-
 
 jar {
 
     exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF'
 
     manifest {
-        attributes 'Main-Class': 'com.somepackage.MainClass',
+        attributes 'Main-Class': 'com.compasso.CompasstestApplication.java',
                    'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
     }
+    
 
 }
