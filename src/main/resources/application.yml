@@ -1,7 +1,7 @@
 server:
   port: 8082
-  contextPath: /a
-
+  servlet:
+    context-path: /a
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver

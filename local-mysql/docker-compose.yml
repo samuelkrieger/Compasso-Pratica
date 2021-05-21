@@ -3,7 +3,8 @@ services:
   mysqlsamuel:
     image: mysql:latest
     ports:
-      - 3307:3306
+      - 3307:3307
+    restart: always
     environment:
       MYSQL_USER: dbmysql
       MYSQL_PASSWORD: root
@@ -11,7 +12,14 @@ services:
       MYSQL_DATABASE: bancodados
     networks:
       - net
-      
+  spring-boot:
+    image: imagem-spring-boot
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    container_name: spring-boot-api
+    expose:
+      - 8082:3307
   admineruaa:
     image: adminer
     restart: always
