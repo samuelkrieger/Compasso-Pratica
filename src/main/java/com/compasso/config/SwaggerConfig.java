@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.compasso"))
+                .apis(RequestHandlerSelectors.basePackage("com.compasso"))
                 .paths(PathSelectors.any())
                 .build();
     }
