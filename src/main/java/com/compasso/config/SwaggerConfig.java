@@ -15,7 +15,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select()
+        		.select()
                 .apis(RequestHandlerSelectors.basePackage("com.compasso"))
                 .paths(PathSelectors.any())
                 .build();

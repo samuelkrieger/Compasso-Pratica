@@ -1,36 +1,14 @@
 package com.compasso.service;
 
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
-import com.compasso.domain.Pessoa;
-import com.compasso.error.BadPessoaException;
-import com.compasso.error.PessoaNotFoundException;
-import com.compasso.repository.PessoaRepository;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.compasso.model.request.PessoaRequest;
+import com.compasso.model.response.PessoaResponse;
 
 
-@Service
-public class PessoaService {
-	   private static final Logger log = LoggerFactory.getLogger(PessoaService.class);
+public interface PessoaService {
 
-	   private final PessoaRepository repository;
-	   
-	   public PessoaService(final PessoaRepository repository) {
-		   this.repository=repository;
-	   }
-
-	    public Pessoa createNewPessoa(final Pessoa pessoa) {
-	        try {
-	            return this.repository.save(pessoa);
-	        } catch (Exception ex) {
-	            log.info("error trying to create new pessoa. {}", ex.getMessage());
-	            throw new BadPessoaException(pessoa.getNome());
-	        }
-	    }
-	    public Pessoa findById(final Long id) {
-	        return this.repository.findById(id).orElseThrow(() -> new PessoaNotFoundException(id));
-	    }
-
+		PessoaResponse created(PessoaRequest request);
+		
+		Optional<PessoaResponse>  findById(final Long id);
 }

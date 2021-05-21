@@ -1,30 +1,23 @@
 version: '3'
 services:
-  mysqlsamuel:
+  docker-mysql:
     image: mysql:latest
+    container_name: mysql
     ports:
-      - 3307:3307
-    restart: always
+      - 3307:3306
     environment:
       MYSQL_USER: dbmysql
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: bancodados
+  
     networks:
       - net
-  spring-boot:
-    image: imagem-spring-boot
-    build:
-      context: . 
-      dockerfile: Dockerfile
-    container_name: spring-boot-api
-    expose:
-      - 8082:3307
   admineruaa:
     image: adminer
     restart: always
     ports:
-      - 9091:8080
+      - 9091:8082
     networks:
       - net
 
