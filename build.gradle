@@ -17,6 +17,7 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.31.Final'
+	implementation group: 'javassist', name: 'javassist', version: '3.12.1.GA'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jdbc', version: '2.4.5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
