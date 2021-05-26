@@ -2,15 +2,15 @@ package com.compasso.response;
 
 import org.springframework.http.HttpStatus;
 
-import com.compasso.model.request.PessoaRequest;
+import com.compasso.model.response.PessoaResponse;
 
 public abstract class Response<T> {
     private final String reason;
     private final String message;
     private final HttpStatus status;
-    private final PessoaRequest result;
+    private final PessoaResponse result;
 
-    public Response(final String reason, final String message, final HttpStatus status, final PessoaRequest created) {
+    public Response(final String reason, final String message, final HttpStatus status, final PessoaResponse created) {
         this.reason = reason;
         this.message = message;
         this.status = status;
@@ -29,7 +29,7 @@ public abstract class Response<T> {
         return status;
     }
 
-    public PessoaRequest getResult() {
+    public PessoaResponse getResult() {
         return result;
     }
 }

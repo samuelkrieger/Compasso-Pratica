@@ -1,5 +1,6 @@
 package com.compasso.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,9 @@ public class PessoaControler {
 	            @ApiResponse(code = 201, message = "pessoa-criada", response = PessoaCreatedResponse.class),
 	            @ApiResponse(code = 400, message = "pessoa-erro"),
 	    })
-	    public ResponseEntity<PessoaResponse>create (@RequestBody PessoaRequest request) {
-	        return ResponseEntity.ok(service.created(request));
+	    public PessoaCreatedResponse created (@RequestBody PessoaRequest request) {
+	    	final PessoaResponse created=this.service.created(request);
+	    	return new PessoaCreatedResponse(created);
 	    }
 	    
 	    @GetMapping("/{id}")
@@ -62,9 +64,10 @@ public class PessoaControler {
 	            @ApiResponse(code = 200, message = "pessoa-found", response = PessoaFoundResponse.class),
 	            @ApiResponse(code = 404, message = "pessoa-not-found", response = PessoaFoundResponse.class),
 	    })
-	    public ResponseEntity<PessoaResponse> get(@PathVariable("id") Long id) {
-	    	Optional<PessoaResponse> userResponse = service.findById(id);
-	        return userResponse.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	    public PessoaFoundResponse get(@PathVariable("id") Long id) {
+	    	Optional<PessoaResponse> userResponse = this.service.findById(id);
+	    	
+	        return new PessoaFoundResponse(userResponse.get());
 	    }
 
 

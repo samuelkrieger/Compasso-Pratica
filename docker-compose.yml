@@ -7,6 +7,8 @@ services:
           - 8082:8082
     depends_on:
           - docker-mysql
+    networks:
+      - net
   docker-mysql:
     image: mysql:latest
     container_name: mysql
